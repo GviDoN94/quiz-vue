@@ -1,5 +1,8 @@
 <script setup>
   const { question } = defineProps(['question']);
+  const emit = defineEmits(['selectedOption']);
+
+  const selectedOption = (value) => emit('selectedOption', value);
 </script>
 
 <template>
@@ -11,6 +14,7 @@
       v-for="option in question.options"
       :key="option.id"
       class="option"
+      @click="selectedOption(option.isCorrect)"
     >
       <p class="option-label">{{ option.label }}</p>
       <div class="option-value">
